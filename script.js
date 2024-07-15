@@ -71,13 +71,7 @@ projectDiv.appendChild(dialogBtn).before(myH1)
 
 
 function initProject(){
-    //take the inputs and add them to objects variable
-    //deal with submit button
-    //deal with cancel button
-    //add list text to page
-    //addbutton to add todos
-    //add a function to take todo input add to array that...
-    //prints out new todos to the list
+    
     dialogBtn.addEventListener("click", (e) => {
         let diaBox = document.querySelector(".diaBox");
         console.log(diaBox)
@@ -87,15 +81,86 @@ function initProject(){
         
         
     })
-
 }
 
 initProject()
 
+let submitBtn = document.querySelector(".submitbtn")
+console.log(submitBtn)
+submitBtn.addEventListener("click", function(event){
+    event.preventDefault()
+
+    let name = document.getElementById("name").value
+    console.log(name)
+
+    let title = document.getElementById("title").value
+    console.log(title)
+
+    let todoadd = document.getElementById("todoadd").value
+    console.log(todoadd)
+
+    let duedate = document.getElementById("duedate").value
+    console.log(duedate)
+
+    let priority = document.getElementById("priority").value
+    console.log(priority)
+
+    const list3 = new todolist(name, title, todoadd, duedate, priority)
+    list3.displayProject()
+
+    let listCurrent = document.createElement("div")
+    listCurrent.setAttribute("class", "listCurrent")
+
+    main.appendChild(listCurrent).before(projectDiv)
+    
+    let addTodoBtn = document.createElement("button")
+    addTodoBtn.setAttribute("class", "todoadd")
+    addTodoBtn.innerText = "Add To List"
+
+    //main.appendChild(addTodoBtn).before(listCurrent)
+    listCurrent.appendChild(addTodoBtn)
+
+
+    let html = "";
+
+    html += `
+    name: ${name}
+    title: ${title}
+    todos: ${todoadd}
+    duedate: ${duedate}
+    priority: ${priority}
+    `
+    listCurrent.innerText = html
+    
+    let diaBox = document.querySelector(".diaBox");
+    diaBox.remove(diaBox);
+
+    let btnAddToDo = document.createElement("button")
+    btnAddToDo.setAttribute("class", "btnAddToDo")
+
+    listCurrent.appendChild(btnAddToDo).innerText = "Add"
+
+    let btnRemove = document.createElement("button")
+    btnRemove.setAttribute("class", "btnRemove")
+    
+    listCurrent.appendChild(btnRemove).innerText = "Remove"
+
+})
+
+    
+
 //***User Interface***
-//create project button
-//View all projects somewhere
-//View all todos in each project (probably just the title and duedate… perhaps changing color for different priorities).
-//Expand a single todo to see/edit its details.
-//Delete a todo button
-//add a todo button
+
+//when the submit button is hit i need to be making 
+// A instance of the object
+//CREATE A NEW OBJECT EACH SUBMIT
+
+
+//add todos to the list
+//remove from the list
+
+//create another project new div 
+// make sure btns usable add remove varialbes
+
+//add some sort of storage
+//find the object for each instance of the object
